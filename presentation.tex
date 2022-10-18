@@ -1,7 +1,60 @@
 \documentclass{beamer}
 
+\usetheme{Dresden}
+\usecolortheme{beaver}
+
+\usepackage{mathtools, amssymb, amsthm, parskip}
+\newtheorem{claim}{Claim}[theorem]
+
+\title{Question 8}
+\subtitle{Mathematics and Statistics Research Competition}
+\author{Jiamu Li \& Frank Tang \& Edward Wang}
+\institute{Scotch College}
+\date{October 24, 2022}
+
+\DeclareMathOperator{\prob}{Pr}
+
 \begin{document}
 
-yeah this counts as having started right?
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \tableofcontents
+\end{frame}
+
+\section{The Question}
+\begin{frame}{The Question}
+  A particle generator is emitting two types of particles (called X and Y) into a long tube. The particles will line up in order after entering the tube. Initially, the tube is empty. At each shot, either an X- or Y-particle is randomly emitted into the tube with equal probability. Different shots are assumed to be independent from each other. Suppose that $n$ shots have been emitted.
+\end{frame}
+\section{Problem 1}
+\begin{frame}{Problem 1}
+\begin{itemize}
+  \item What is the probability that no two X-particles are next to each other?
+\end{itemize}
+
+\begin{equation*}
+  \prob(\text{No consecutive X-particles}) = \frac{\# \text{No consecutive X-particles}}{\# \text{Total arrangements}}
+\end{equation*}
+
+\end{frame}
+
+\begin{frame}
+\begin{claim}\label{combiformula}
+  The number of arrangements with no consecutive X-particles is 
+  \begin{equation}
+    \sum_{k=0}^n \binom{n-k+1}{k}.
+  \end{equation}
+\end{claim}
+\begin{proof}
+  Consider a tube with $n$ particles, $k$ of them are X, $n-k$ are Y.
+  \begin{equation*}
+    \underbrace{\text{YY}\dots\text{YY}}_{n-k}
+  \end{equation*}
+  Placing all $k$ of the X particles in the $n-k+1$ gaps will ensure no consecutive X's.
+\end{proof}
+
+\end{frame}
 
 \end{document}
