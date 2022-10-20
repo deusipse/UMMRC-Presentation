@@ -204,7 +204,24 @@ As $n$ approaches infinity, the proportion approaches \[
   \begin{itemize}
     \item What happens if $m$ consecutive X particles collapsed into $n$ particles?
     \item Everything else remains the same, i.e. Y particles don't collapse, probability of X particle is $p \in (0, 1)$
+    \item What is the average number of particles after $k$ shots?
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Recursion}
+  If an X particles hits $m-1$ consecutive X particles, then they collapse into $n$ X particles, decreasing the number of particles by $m-1-n$.
+
+  Otherwise, the number of particles increases by 1.
+
+  Let the probability of having  $m-1$ consecutive X particles be $\vartheta$. 
+
+  \begin{align*}
+    T_{k+1} &= T_k + 1-p\vartheta + p\vartheta(n-m+1) \\
+            &= T_k + 1 - p\vartheta(m - n)
+  \end{align*}
+\end{frame}
+\begin{frame}{Calculating $\vartheta$}
+  amogus
 \end{frame}
 
 \end{document}
