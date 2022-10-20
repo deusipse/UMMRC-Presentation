@@ -1,9 +1,25 @@
-\documentclass{beamer}
+\documentclass[xcolor={usenames,dvipsnames}]{beamer}
 
 \usetheme{Dresden}
 \usecolortheme{beaver}
 
+
+% https://tex.stackexchange.com/questions/137022/how-to-insert-page-number-in-beamer-navigation-symbols
+\addtobeamertemplate{navigation symbols}{}{%
+  \usebeamerfont{footline}%
+  \usebeamercolor[fg]{footline}%
+  \hspace{1em}%
+  \insertframenumber/\inserttotalframenumber
+}
+\setbeamercolor{footline}{fg=darkred}
 \usepackage{mathtools, amssymb, amsthm, parskip}
+
+\usepackage[inline]{asymptote}
+\def\asydir{asy}
+
+\usepackage{microtype}
+\usepackage{multicol}
+
 \newtheorem{claim}{Claim}[theorem]
 
 \title{Question 8}
@@ -25,8 +41,11 @@
 \end{frame}
 
 \section{The Question}
-\begin{frame}{The Question}
-  A particle generator is emitting two types of particles (called X and Y) into a long tube. The particles will line up in order after entering the tube. Initially, the tube is empty. At each shot, either an X- or Y-particle is randomly emitted into the tube with equal probability. Different shots are assumed to be independent from each other. Suppose that $n$ shots have been emitted.
+\begin{frame}{The Situation}
+  A particle generator emits X or Y particles into an empty tube, with equal probability. Shots are independent.
+  \begin{center}
+    
+  \end{center}
 \end{frame}
 \section{Problem 1}
 \begin{frame}{Problem 1}
@@ -35,26 +54,138 @@
 \end{itemize}
 
 \begin{equation*}
-  \prob(\text{No consecutive X-particles}) = \frac{\# \text{No consecutive X-particles}}{\# \text{Total arrangements}}
+  \prob(\text{No consec X-particles}) = \frac{\# \text{Arrangements w/o consec X-particles}}{\# \text{Total arrangements}}
 \end{equation*}
 
 \end{frame}
 
 \begin{frame}
-\begin{claim}\label{combiformula}
-  The number of arrangements with no consecutive X-particles is 
-  \begin{equation}
-    \sum_{k=0}^n \binom{n-k+1}{k}.
-  \end{equation}
-\end{claim}
-\begin{proof}
+
   Consider a tube with $n$ particles, $k$ of them are X, $n-k$ are Y.
   \begin{equation*}
     \underbrace{\text{YY}\dots\text{YY}}_{n-k}
   \end{equation*}
-  Placing all $k$ of the X particles in the $n-k+1$ gaps will ensure no consecutive X's.
-\end{proof}
+  Placing all $k$ of the X particles in the $n-k+1$ gaps will ensure no consecutive X's. Hence, the number of arrangements without consecutive X's is
+  \begin{equation*}
+    \sum_{k=0}^n \binom{n-k+1}{k}.
+  \end{equation*}
 
+\end{frame}
+
+\begin{frame}[fragile]
+
+\begin{multicols}{2}
+  \begin{center}
+    \begin{asy}
+      unitsize(0.38cm);
+      defaultpen(fontsize(9pt));
+
+      int fib(int n) {
+        if (n == 0) 
+        return 0;
+        else if (n == 1) 
+        return 1;
+        int fibs[] = {0, 1};
+        while (fibs.length <= n) {
+          fibs.push(fibs[fibs.length - 1] + fibs[fibs.length - 2]);
+        }
+        return fibs[fibs.length - 1];
+      }
+
+      int rows = 6;
+
+      for (int i = 0; i <= rows; ++i) {
+        pair A = (-i, -i*sqrt(3));
+        pair B = (3, sqrt(3));
+        path idk = A -- (A + 0.5*i*B) + 0.5*B;
+        draw(L = Label(string(fib(i+1)), position = EndPoint), idk, blue+opacity(0.4));
+      }
+
+      for (int i = 0; i < floor(rows/2)+1; ++i) {
+        pair A = (-rows, -rows*sqrt(3));
+        pair B = (A + i*(3, sqrt(3)));
+        if (i != 0)
+        draw(B + 0.25*(-1, sqrt(3)) -- B + 0.75*(-1, sqrt(3)), red);
+        if (i != floor(rows/2))
+        draw(B + 0.25*(1, sqrt(3)) -- B + 0.75*(1, sqrt(3)), red);
+      }
+
+      for (int i = 0; i <= rows; ++i) {
+        for (int j = 0; j <= i; ++j) {
+          label(string(choose(i, j)), (j*2 - i, -i*sqrt(3)));
+        }
+      }
+    \end{asy}
+  \end{center}
+  \columnbreak
+  Observe the diagram of Pascal's triangle.
+
+  The formula represents the sum of each diagonal, which is made up of the sum of the previous two diagonals, satisfying the Fibonacci recursion. 
+
+  Hence,   \[\sum_{k=0}^n \binom{n-k+1}{k} = F_{n+2}.\]
+\end{multicols}
+
+\end{frame}
+
+\begin{frame}
+  Since each of the $n$ particles is X or Y, the number of arrangements is $2^n$.
+
+  Hence the probability that no two X-particles are consecutive after $n$ shots is \[
+    \frac{F_{n+2}}{2^n}
+  .\] 
+\end{frame}
+
+\section{Problem 2}
+\begin{frame}{Problem 2}
+  Two consecutive X particles now collapse into one. 
+  \begin{itemize}
+    \item Find the average number of particles after $n$ shots.
+  \end{itemize}
+  \begin{figure}[H]
+    \vspace{-1.5em}
+    \begin{align*}
+    &\text{X} \to \text{X}: \text{X} \\
+    &\text{Y} \to \text{X}: \text{YX} \\
+    &\text{X} \to \text{Y}: \text{XY} \\
+    &\text{Y} \to \text{Y}: \text{YY}
+    \end{align*}
+  \end{figure}
+  Out of 4 possible events, 3 increase the number of particles by 1. Hence, the average number of particles increases by $\frac{3}{4}$ each shot, so the formula is \[
+    T_n = \frac{3}{4}n + \frac{1}{4}
+  .\] 
+\end{frame}
+
+\section{Problem 3}
+\begin{frame}{Problem 3}
+  Continuing from the previous problem, let the probability of firing an X particle be some  $p \in (0, 1)$.
+  \begin{itemize}
+    \item What is the proportion of X particles in the tube as the number of shots goes to infinity?
+  \end{itemize}
+  \vspace{1cm}
+  \begin{equation*}
+    \text{Proportion} = \frac{\#\text{X particles}}{\#\text{Particles}} = \frac{\#\text{Particles - Y particles}}{\#\text{Particles}}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}
+  The number of X particles stays the same if an X particle hits an X particle.
+
+  This happens with probability $p^2$.
+
+  Hence the average number of particles increases by $1-p^2$ per shot, so after $n$ shots,  \[
+    T_n = (1-p^2)n + p^2
+  .\] 
+\end{frame}
+\begin{frame}
+  The average number of Y particles is clearly \[
+    (1-p)n
+  .\] Hence, the proportion is 
+  \begin{equation*}
+    \text{Proportion} = \frac{(1-p^2)n + p^2 - (1-p)n}{(1-p^2)n + p^2}.
+\end{equation*}
+As $n$ approaches infinity, the proportion approaches \[
+  \frac{p}{1+p}
+.\] 
 \end{frame}
 
 \end{document}
