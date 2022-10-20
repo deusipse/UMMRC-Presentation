@@ -3,6 +3,17 @@
 \usetheme{Dresden}
 \usecolortheme{beaver}
 
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{caption}
+
+\newcommand{\incfig}[1]{%
+  \def\svgwidth{0.3\textwidth}
+  \import{./figures/}{#1.pdf_tex}
+}
+
 
 % https://tex.stackexchange.com/questions/137022/how-to-insert-page-number-in-beamer-navigation-symbols
 \addtobeamertemplate{navigation symbols}{}{%
@@ -141,18 +152,18 @@
   \begin{itemize}
     \item Find the average number of particles after $n$ shots.
   \end{itemize}
-  \begin{figure}[H]
-    \vspace{-1.5em}
-    \begin{align*}
-    &\text{X} \to \text{X}: \text{X} \\
-    &\text{Y} \to \text{X}: \text{YX} \\
-    &\text{X} \to \text{Y}: \text{XY} \\
-    &\text{Y} \to \text{Y}: \text{YY}
-    \end{align*}
+  \begin{multicols}{2}
+  \begin{figure}[ht]
+    \centering
+    \incfig{something}
+    \caption{}
+    \label{fig:stuff}
   \end{figure}
+  \columnbreak
   Out of 4 possible events, 3 increase the number of particles by 1. Hence, the average number of particles increases by $\frac{3}{4}$ each shot, so the formula is \[
     T_n = \frac{3}{4}n + \frac{1}{4}
   .\] 
+  \end{multicols}
 \end{frame}
 
 \section{Problem 3}
@@ -186,6 +197,14 @@
 As $n$ approaches infinity, the proportion approaches \[
   \frac{p}{1+p}
 .\] 
+\end{frame}
+
+\section{Generalisation}
+\begin{frame}{Generalisation}
+  \begin{itemize}
+    \item What happens if $m$ consecutive X particles collapsed into $n$ particles?
+    \item Everything else remains the same, i.e. Y particles don't collapse, probability of X particle is $p \in (0, 1)$
+  \end{itemize}
 \end{frame}
 
 \end{document}
