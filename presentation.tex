@@ -40,6 +40,7 @@
 \date{October 24, 2022}
 
 \DeclareMathOperator{\prob}{Pr}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \begin{document}
 
@@ -221,7 +222,69 @@ As $n$ approaches infinity, the proportion approaches \[
   \end{align*}
 \end{frame}
 \begin{frame}{Calculating $\vartheta$}
-  amogus
+  $\vartheta$ is the probability that there are $m-1$ X particles in a row.
+
+  The string of X particles must start with either a Y unless it is the beginning of the sequence.
+  \begin{figure}[H]
+    \vspace{-1.5em}
+    \begin{align*}
+        &\underbrace{\text{X}\dots\text{X}}_{m-1}\text{Y} \tag{A}\\
+        &\underbrace{\text{X}\dots\text{X}}_{m-1} \tag{B}
+    \end{align*}
+    \vspace{-2em}
+  \end{figure}
+\end{frame}
+\begin{frame}{Configuration A}
+    \begin{figure}[H]
+    \vspace{-1.5em}
+    \begin{align*}
+        &\underbrace{\text{X}\dots\text{X}}_{m-1}\text{Y} \tag{A}
+    \end{align*}
+    \vspace{-2em}
+  \end{figure}
+
+  If the sequence has a Y particle at the end, then the probability is simply $(1-p)p^{m-1}$.
+
+  But that doesn't account for previous collapses.
+  \begin{figure}[H]
+      \vspace{-1.5em}
+      \begin{equation*}
+        \underbrace{\text{X}\dots\text{X}}_{m + (m-n) - 1}\text{Y} \quad \longrightarrow \quad \underbrace{\text{X}\dots\text{X}}_{n+(m-n)-1}\text{Y}\quad = \quad \underbrace{\text{X}\dots\text{X}}_{m-1}\text{Y} 
+      \end{equation*}
+      \vspace{-2em}
+    \end{figure}
+  \end{frame}
+  \begin{frame}{Configuration A}
+    Adding $m-n$ particles to $m-1$ reverts it back to $m-1$, which can happen $\floor*{\dfrac{k-m}{m-n}}$ times. Summing this up gives \[\sum_{a = 0}^{\floor*{\frac{k-m}{m-n}}} (1-p)p^{a(m-n) + m-1}.\]
+\end{frame}
+\begin{frame}{Configuration B}
+    \begin{figure}[H]
+    \vspace{-1.5em}
+    \begin{align*}
+        &\underbrace{\text{X}\dots\text{X}}_{m-1} \tag{B}
+    \end{align*}
+    \vspace{-2em}
+  \end{figure}
+  Accounting for previous collapses, this configuration can obviously happen with a probability of $p^{k}$, if $k = a(m-n) + m-1$ for some integer $a$. Hence, the probability is \[
+    \varepsilon = \begin{cases} p^{k}, &k-m+1 \equiv 0 \bmod m-n \\ 0, &k-m+1 \not\equiv 0 \bmod m-n. \end{cases}
+  .\] 
+\end{frame}
+\begin{frame}
+  Adding these two probabilities gives us \[
+    \vartheta = \sum_{a=0}^{\floor*{\frac{k-m}{m-n}}} (1-p)p^{a(m-n)+m-1} + \varepsilon,
+  \] where \[
+    \varepsilon = \begin{cases} p^{k}, &k-m+1 \equiv 0 \bmod m-n \\ 0, &k-m+1 \not\equiv 0 \bmod m-n. \end{cases}
+  .\] Plugging this into the recursion earlier, we get \[
+    T_k = m-1+\sum _{b=m-1}^{k-1} \left(1-p \left(\sum _{a=0}^{\floor*{\frac{b-m}{m-n}} } (1-p) p^{a (m-n)+m-1}+\varepsilon\right) (m-n)\right)
+  .\] 
+\end{frame}
+
+\begin{frame}{Use of computer simulation}
+  Computer models allowed us to quickly compute average number of particles after any number of shots.
+
+  These helped us determine that a formula existed when finding the pattern.
+
+  They also helped us validate that our formula worked correctly.
 \end{frame}
 
 \end{document}
