@@ -8,6 +8,7 @@
 \usepackage{pdfpages}
 \usepackage{transparent}
 \usepackage{caption}
+\usepackage{comment}
 
 \newcommand{\incfig}[1]{%
   \def\svgwidth{0.3\textwidth}
@@ -68,6 +69,26 @@
 
 \end{frame}
 
+\begin{frame}
+  Let $f(n)$ denote the number of arrangements without two touching X particles after  $n $ shots.
+  
+  Consider the first particle, which is either X or Y.
+  \begin{itemize}
+    \item If the first particle is Y, then it doesn't affect the number of arrangements giving us $f(n-1)$.
+    \item Otherwise, the first particle is X and hence the next particle must be Y. Hence there are  $f(n-2)$ arrangements.
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  Adding these two up, we get  \[
+    f(n) = f(n-1) + f(n-2)
+  .\] This satisfies the Fibonacci recursion, and since $f(1) = 2$ and $f(2) = 3)$ have $f(n) = F_{n+2}$, where $F_n$ is the $n$th Fibonacci number.
+
+  Since the total number of arrangements of $n$ particles is $2^{n}$, since each particle is either X or Y, the probabiliy that no two X particles are consecutive is \[
+    \frac{F_{n+2}}{2^n}
+  .\] 
+\end{frame}
+
+\begin{comment}
 \begin{frame}
 
   Consider a tube with $n$ particles, $k$ of them are X, $n-k$ are Y.
@@ -143,6 +164,7 @@
     \frac{F_{n+2}}{2^n}
   .\] 
 \end{frame}
+\end{comment}
 
 \section{Problem 2}
 \begin{frame}{Problem 2}
@@ -317,11 +339,19 @@ As $n$ approaches infinity, the proportion approaches \[
 
 \section{Epilogue}
 \begin{frame}{Use of computer simulation}
-  Computer models allowed us to quickly compute average number of particles after any number of shots.
+  We used C++ to quickly compute average number of particles after any number of shots.
 
-  These helped us determine that a formula existed when finding the pattern.
+  Computer simulations helped us determine that a formula existed when finding the pattern.
 
   They also helped us validate that our formula worked correctly.
+\end{frame}
+\begin{frame}{Extra research ideas}
+  There is still extra things that can be explored.
+  \begin{itemize}
+    \item What if both X and Y can collapse?
+    \item What if there are more than 2 particles?
+    \item What if there are $n$ particles, $k$ of which can collapse?
+  \end{itemize}
 \end{frame}
 
 \end{document}
