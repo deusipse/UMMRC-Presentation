@@ -319,7 +319,7 @@ As $n$ approaches infinity, the proportion approaches \[
   \begin{figure}[ht]
     \centering
     \def\svgwidth{0.6\textwidth}
-    \import{./figures/}{a.pdf_tex}
+    \import{./figures/}{b.pdf_tex}
   \end{figure}
 \end{center}
 
@@ -327,7 +327,7 @@ As $n$ approaches infinity, the proportion approaches \[
     \varepsilon = \begin{cases} p^{k}, &k-m+1 \equiv 0 \bmod m-n \\ 0, &k-m+1 \not\equiv 0 \bmod m-n. \end{cases}
   .\] 
 \end{frame}
-\begin{frame}
+\begin{frame}{Configuration B}
   Adding these two probabilities gives us \[
     \vartheta = \sum_{a=0}^{\floor*{\frac{k-m}{m-n}}} (1-p)p^{a(m-n)+m-1} + \varepsilon,
   \] where \[
