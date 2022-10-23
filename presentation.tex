@@ -17,13 +17,12 @@
 
 
 % https://tex.stackexchange.com/questions/137022/how-to-insert-page-number-in-beamer-navigation-symbols
-\addtobeamertemplate{navigation symbols}{}{%
-  \usebeamerfont{footline}%
-  \usebeamercolor[fg]{footline}%
-  \hspace{1em}%
-  \insertframenumber/\inserttotalframenumber
-}
-\setbeamercolor{footline}{fg=darkred}
+\setbeamertemplate{footline}[frame number]
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+  \insertshorttitle\hfill%
+  \insertframenumber\,/\,\inserttotalframenumber}
+\setbeamercolor{institute in head/foot}{parent=palette primary}
+
 \usepackage{mathtools, amssymb, amsthm, parskip}
 
 \usepackage[inline]{asymptote}
@@ -53,8 +52,13 @@
 \section{The Question}
 \begin{frame}{The Situation}
   A particle generator emits X or Y particles into an empty tube, with equal probability. Shots are independent.
+  \vspace{1cm}
   \begin{center}
-    
+   \begin{figure}[ht]
+    \centering
+    \def\svgwidth{0.8\textwidth}
+    \import{./figures/}{drawing.pdf_tex}
+  \end{figure}
   \end{center}
 \end{frame}
 \section{Problem 1}
@@ -81,7 +85,7 @@
 \begin{frame}
   Adding these two up, we get  \[
     g(n) = g(n-1) + g(n-2)
-  .\] This satisfies the Fibonacci recursion, and since $f(1) = 2$ and $f(2) = 3$ have $g(n) = F_{n+2}$, where $F_n$ is the $n$th Fibonacci number.
+  .\] This satisfies the Fibonacci recursion, and since $g(1) = 2$ and $g(2) = 3$ we get $g(n) = F_{n+2}$, where $F_n$ is the $n$th Fibonacci number.
 
   Since the total number of arrangements of $n$ particles is $2^{n}$, since each particle is either X or Y, the probability that no two X particles are consecutive is \[
     \frac{F_{n+2}}{2^n}
@@ -249,24 +253,45 @@ As $n$ approaches infinity, the proportion approaches \[
 \begin{frame}{Calculating $\vartheta$}
   $\vartheta$ is the probability that there are $m-1$ X particles in a row.
 
-  The string of X particles must start with either a Y unless it is the beginning of the sequence.
-  \begin{figure}[H]
-    \vspace{-1.5em}
-    \begin{align*}
-        &\underbrace{\text{X}\dots\text{X}}_{m-1}\text{Y} \tag{A}\\
-        &\underbrace{\text{X}\dots\text{X}}_{m-1} \tag{B}
-    \end{align*}
-    \vspace{-2em}
+  The string of X particles must start with either a Y unless it is the beginning of the sequence. 
+  % \begin{figure}[H]
+  %   \vspace{-1.5em}
+  %   \begin{align*}
+  %       &\underbrace{\text{X}\dots\text{X}}_{m-1}\text{Y} \tag{A}\\
+  %       &\underbrace{\text{X}\dots\text{X}}_{m-1} \tag{B}
+  %   \end{align*}
+  %   \vspace{-2em}
+  % \end{figure}
+  \vspace{1cm}
+\begin{center}
+  \begin{figure}[ht]
+    \centering
+    \def\svgwidth{0.6\textwidth}
+    \import{./figures/}{a.pdf_tex}
+\end{figure}
+  \begin{figure}[ht]
+    \centering
+    \def\svgwidth{0.6\textwidth}
+    \import{./figures/}{b.pdf_tex}
   \end{figure}
+\end{center}
+
 \end{frame}
 \begin{frame}{Configuration A}
-    \begin{figure}[H]
-    \vspace{-1.5em}
-    \begin{align*}
-        &\underbrace{\text{X}\dots\text{X}}_{m-1}\text{Y} \tag{A}
-    \end{align*}
-    \vspace{-2em}
+  %   \begin{figure}[H]
+  %   \vspace{-1.5em}
+  %   \begin{align*}
+  %       &\underbrace{\text{X}\dots\text{X}}_{m-1}\text{Y} \tag{A}
+  %   \end{align*}
+  %   \vspace{-2em}
+  % \end{figure}
+  \begin{center}
+  \begin{figure}[ht]
+    \centering
+    \def\svgwidth{0.6\textwidth}
+    \import{./figures/}{a.pdf_tex}
   \end{figure}
+\end{center}
 
   If the sequence has a Y particle at the end, then the probability is simply $(1-p)p^{m-1}$.
 
@@ -283,13 +308,21 @@ As $n$ approaches infinity, the proportion approaches \[
     Adding $m-n$ particles to $m-1$ reverts it back to $m-1$, which can happen $\floor*{\dfrac{k-m}{m-n}}$ times. Summing this up gives \[\sum_{a = 0}^{\floor*{\frac{k-m}{m-n}}} (1-p)p^{a(m-n) + m-1}.\]
 \end{frame}
 \begin{frame}{Configuration B}
-    \begin{figure}[H]
-    \vspace{-1.5em}
-    \begin{align*}
-        &\underbrace{\text{X}\dots\text{X}}_{m-1} \tag{B}
-    \end{align*}
-    \vspace{-2em}
+  %   \begin{figure}[H]
+  %   \vspace{-1.5em}
+  %   \begin{align*}
+  %       &\underbrace{\text{X}\dots\text{X}}_{m-1} \tag{B}
+  %   \end{align*}
+  %   \vspace{-2em}
+  % \end{figure}
+    \begin{center}
+  \begin{figure}[ht]
+    \centering
+    \def\svgwidth{0.6\textwidth}
+    \import{./figures/}{a.pdf_tex}
   \end{figure}
+\end{center}
+
   Accounting for previous collapses, this configuration can obviously happen with a probability of $p^{k}$, if $k = a(m-n) + m-1$ for some integer $a$. Hence, the probability is \[
     \varepsilon = \begin{cases} p^{k}, &k-m+1 \equiv 0 \bmod m-n \\ 0, &k-m+1 \not\equiv 0 \bmod m-n. \end{cases}
   .\] 
@@ -299,7 +332,7 @@ As $n$ approaches infinity, the proportion approaches \[
     \vartheta = \sum_{a=0}^{\floor*{\frac{k-m}{m-n}}} (1-p)p^{a(m-n)+m-1} + \varepsilon,
   \] where \[
     \varepsilon = \begin{cases} p^{k}, &k-m+1 \equiv 0 \bmod m-n \\ 0, &k-m+1 \not\equiv 0 \bmod m-n. \end{cases}
-  .\] 
+  \] 
 \end{frame}
 
 \begin{frame}{Putting it all together}
@@ -319,7 +352,7 @@ As $n$ approaches infinity, the proportion approaches \[
   \] However, there is a notable case where this nasty formula simplifies dramatically.
 \end{frame}
 
-\begin{frame}
+\begin{frame}{A special case}
   Let us consider what happens when $n = m-1 \iff m-n = 1$.
   \begin{equation*}
     T_k = m-1+\sum _{b=m-1}^{k-1} \left(1-p \left({\color{Orchid}\sum _{a=0}^{\floor*{\frac{b-m}{1}} } (1-p) p^{a (1)+m-1}+p^{b}}\right) (1)\right)

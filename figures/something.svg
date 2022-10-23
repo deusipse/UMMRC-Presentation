@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.79831409"
-     inkscape:cx="178.50117"
-     inkscape:cy="300.63355"
+     inkscape:zoom="0.76841416"
+     inkscape:cx="-27.979703"
+     inkscape:cy="300.61914"
      inkscape:window-width="1420"
      inkscape:window-height="814"
      inkscape:window-x="10"
@@ -153,7 +153,7 @@
     <circle
        style="fill:none;stroke:#ff0000;stroke-width:0.199224;stroke-dasharray:none;stroke-opacity:1"
        id="path7286"
-       cx="139.16878"
+       cx="138.96175"
        cy="105.09324"
        r="4.8003883" />
     <circle
@@ -180,7 +180,7 @@
          id="tspan10624"
          style="stroke-width:0.2"
          x="93.841431"
-         y="104.77348"></tspan></text>
+         y="104.77348" /></text>
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -195,13 +195,13 @@
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       x="137.73587"
+       x="137.52884"
        y="106.6618"
        id="text10680-4"><tspan
          sodipodi:role="line"
          id="tspan10678-9"
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-opacity:1"
-         x="137.73587"
+         x="137.52884"
          y="106.6618">X</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.186486;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
@@ -214,7 +214,7 @@
     <circle
        style="fill:none;stroke:#00a4ff;stroke-width:0.199224;stroke-dasharray:none;stroke-opacity:1"
        id="path7286-2"
-       cx="139.16878"
+       cx="138.96175"
        cy="120.09325"
        r="4.8003883" />
     <circle
@@ -226,7 +226,7 @@
     <circle
        style="fill:none;stroke:#ff0000;stroke-width:0.2;stroke-dasharray:0.8, 0.2;stroke-dashoffset:0;stroke-opacity:1"
        id="path7286-4-9"
-       cx="129.3681"
+       cx="129.16107"
        cy="120.09325"
        r="4.8003883" />
     <path
@@ -251,13 +251,13 @@
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       x="137.73587"
+       x="137.52884"
        y="121.66179"
        id="text10680-4-3"><tspan
          sodipodi:role="line"
          id="tspan10678-9-1"
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-opacity:1"
-         x="137.73587"
+         x="137.52884"
          y="121.66179">Y</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.186486;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
@@ -270,7 +270,7 @@
     <circle
        style="fill:none;stroke:#ff0000;stroke-width:0.199224;stroke-dasharray:none;stroke-opacity:1"
        id="path7286-2-0"
-       cx="139.16878"
+       cx="138.96175"
        cy="135.09325"
        r="4.8003883" />
     <circle
@@ -282,7 +282,7 @@
     <circle
        style="fill:none;stroke:#00a4ff;stroke-width:0.2;stroke-dasharray:0.8, 0.2;stroke-dashoffset:0;stroke-opacity:1"
        id="path7286-4-9-8"
-       cx="129.3681"
+       cx="129.16107"
        cy="135.09325"
        r="4.8003883" />
     <path
@@ -307,13 +307,13 @@
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       x="137.73587"
+       x="137.52884"
        y="136.66177"
        id="text10680-4-3-5"><tspan
          sodipodi:role="line"
          id="tspan10678-9-1-2"
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-opacity:1"
-         x="137.73587"
+         x="137.52884"
          y="136.66177">X</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.186486;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
@@ -326,7 +326,7 @@
     <circle
        style="fill:none;stroke:#00a4ff;stroke-width:0.199224;stroke-dasharray:none;stroke-opacity:1"
        id="path7286-2-0-4"
-       cx="139.16878"
+       cx="138.96175"
        cy="150.09325"
        r="4.8003883" />
     <circle
@@ -338,7 +338,7 @@
     <circle
        style="fill:none;stroke:#00a4ff;stroke-width:0.2;stroke-dasharray:0.8, 0.2;stroke-dashoffset:0;stroke-opacity:1"
        id="path7286-4-9-8-6"
-       cx="129.3681"
+       cx="129.16107"
        cy="150.09325"
        r="4.8003883" />
     <path
@@ -363,13 +363,13 @@
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       x="137.73587"
+       x="137.52884"
        y="151.66177"
        id="text10680-4-3-5-9"><tspan
          sodipodi:role="line"
          id="tspan10678-9-1-2-6"
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-opacity:1"
-         x="137.73587"
+         x="137.52884"
          y="151.66177">Y</tspan></text>
   </g>
 </svg>
