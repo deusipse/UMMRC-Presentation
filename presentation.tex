@@ -150,27 +150,19 @@
   \begin{itemize}
     \item Find the average number of particles after $n$ shots.
   \end{itemize}
-  \begin{multicols}{2}
-  \begin{figure}[ht]
-    \centering
-    \incfig{something}
-    \caption{}
-    \label{fig:stuff}
-  \end{figure}
-  \columnbreak
-  Out of 4 possible events, 3 increase the number of particles by 1. Hence, the average number of particles increases by $\frac{3}{4}$ each shot, so the formula is \[
-    T_n = \frac{3}{4}n + \frac{1}{4}
-  .\] 
-  \end{multicols}
+
+  This problem can be solved as a subcase of the more general following problem.
 \end{frame}
 
 \section{Problem 3}
 \begin{frame}{Problem 3}
   Continuing from the previous problem, let the probability of firing an X particle be some  $p \in (0, 1)$.
+  Suppose at each shot, the probability of firing an X particle is  some $p \in (0, 1)$.
   \begin{itemize}
-    \item What is the proportion of X particles in the tube as the number of shots goes to infinity?
+    \item Will the proportion of X particles in the tube stabilise as the number of shots goes to infinity?
+    \item If so, is there a formula for this number?
   \end{itemize}
-  \vspace{1cm}
+  We have:
   \begin{equation*}
     \text{Proportion} = \frac{\#\text{X particles}}{\#\text{Particles}} = \frac{\#\text{Particles - Y particles}}{\#\text{Particles}}
   \end{equation*}
@@ -181,12 +173,24 @@
 
   This happens with probability $p^2$.
 
-  Hence the average number of particles increases by $1-p^2$ per shot, so after $n$ shots,  \[
+  \begin{multicols}{2}
+  \begin{figure}[ht]
+    \centering
+    \incfig{something}
+    \label{fig:stuff}
+  \end{figure}
+  \columnbreak
+  Otherwise, the number of particles increases by 1 with probability $1-p^2$. So, \[
+    T_{n+1} = T_n + 1-p^2
+  .\] Solving, we get \[
     T_n = (1-p^2)n + p^2
-  .\] 
+    .\] \end{multicols}
+    Setting $p = \frac{1}{2}$ yields the solution for Problem 2: $
+    T_n = \frac{3}{4}n + \frac{1}{4}
+  $.
 \end{frame}
 \begin{frame}
-  The average number of Y particles is clearly \[
+  After $n$ shots, clearly the number of Y particles is \[
     (1-p)n
   .\] Hence, the proportion is 
   \begin{equation*}
@@ -271,11 +275,47 @@ As $n$ approaches infinity, the proportion approaches \[
     \vartheta = \sum_{a=0}^{\floor*{\frac{k-m}{m-n}}} (1-p)p^{a(m-n)+m-1} + \varepsilon,
   \] where \[
     \varepsilon = \begin{cases} p^{k}, &k-m+1 \equiv 0 \bmod m-n \\ 0, &k-m+1 \not\equiv 0 \bmod m-n. \end{cases}
-  .\] Plugging this into the recursion earlier, we get \[
-    T_k = m-1+\sum _{b=m-1}^{k-1} \left(1-p \left(\sum _{a=0}^{\floor*{\frac{b-m}{m-n}} } (1-p) p^{a (m-n)+m-1}+\varepsilon\right) (m-n)\right)
   .\] 
 \end{frame}
 
+\begin{frame}{Putting it all together}
+  Recall that we obtained a recursion for  $T_k$ earlier.
+  \[T_{k+1} = T_k + 1 - p\vartheta(m - n)\]
+  We simply sum the left hand side from $m-1$ to $k-1$ to get a closed expression:
+  \begin{equation*}
+  T_k = m-1 + \sum_{b=m-1}^{k-1} \left(1-p\vartheta(m-n)\right).
+  \end{equation*}
+  The formula works for $k \ge m$ since $T_k = k$ for  $k<m$.
+\end{frame}
+
+\begin{frame}
+  We can even expand it, getting
+  \[
+  T_k = m-1+\sum _{b=m-1}^{k-1} \left(1-p \left(\sum _{a=0}^{\floor*{\frac{b-m}{m-n}} } (1-p) p^{a (m-n)+m-1}+\varepsilon\right) (m-n)\right)
+  \] However, there is a notable case where this nasty formula simplifies dramatically.
+\end{frame}
+
+\begin{frame}
+  Let us consider what happens when $n = m-1 \iff m-n = 1$.
+  \begin{equation*}
+    T_k = m-1+\sum _{b=m-1}^{k-1} \left(1-p \left({\color{Orchid}\sum _{a=0}^{\floor*{\frac{b-m}{1}} } (1-p) p^{a (1)+m-1}+p^{b}}\right) (1)\right)
+  \end{equation*}
+  Even $\varepsilon$ becomes simplified into $p^{k}$ since $z \equiv 0 \bmod 1$ for any integer  $z$. Amazingly, we can simplify $\color{Orchid} \vartheta$ into  \[
+    \vartheta = \sum _{a=0}^{k-m } (1-p) p^{a+m-1}+p^{k} = p^{m-1}
+  \] since it is a geometric series. Now $\vartheta$ is constant as it no longer depends on  $k$.
+\end{frame}
+\begin{frame}
+  Putting it back in, we get 
+    \begin{align*}
+      T_k &= m-1 + \sum_{b=m-1}^{k-1} (1-p({\color{Orchid} p^{m-1}})) \\
+          &= m-1 + (k-m+1)(1-p^{m})
+    \end{align*}
+    Setting $m = 2, n = 1, p = \frac{1}{2}$, the parameters of Problem 3, we arrive at the exact same formula: \[
+      T_k = (1 - p^2)k + p^2
+    .\] 
+\end{frame}
+
+\section{Epilogue}
 \begin{frame}{Use of computer simulation}
   Computer models allowed us to quickly compute average number of particles after any number of shots.
 
