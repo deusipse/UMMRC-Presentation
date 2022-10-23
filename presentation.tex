@@ -70,20 +70,20 @@
 \end{frame}
 
 \begin{frame}
-  Let $f(n)$ denote the number of arrangements without two touching X particles after  $n $ shots.
+  Let $g(n)$ denote the number of arrangements without two touching X particles after  $n $ shots.
   
   Consider the first particle, which is either X or Y.
   \begin{itemize}
-    \item If the first particle is Y, then it doesn't affect the number of arrangements giving us $f(n-1)$.
-    \item Otherwise, the first particle is X and hence the next particle must be Y. Hence there are  $f(n-2)$ arrangements.
+    \item If the first particle is Y, then it doesn't affect the number of arrangements giving us $g(n-1)$.
+    \item Otherwise, the first particle is X and hence the next particle must be Y. Hence there are  $g(n-2)$ arrangements.
   \end{itemize}
 \end{frame}
 \begin{frame}
   Adding these two up, we get  \[
-    f(n) = f(n-1) + f(n-2)
-  .\] This satisfies the Fibonacci recursion, and since $f(1) = 2$ and $f(2) = 3)$ have $f(n) = F_{n+2}$, where $F_n$ is the $n$th Fibonacci number.
+    g(n) = g(n-1) + g(n-2)
+  .\] This satisfies the Fibonacci recursion, and since $f(1) = 2$ and $f(2) = 3$ have $g(n) = F_{n+2}$, where $F_n$ is the $n$th Fibonacci number.
 
-  Since the total number of arrangements of $n$ particles is $2^{n}$, since each particle is either X or Y, the probabiliy that no two X particles are consecutive is \[
+  Since the total number of arrangements of $n$ particles is $2^{n}$, since each particle is either X or Y, the probability that no two X particles are consecutive is \[
     \frac{F_{n+2}}{2^n}
   .\] 
 \end{frame}
@@ -178,6 +178,8 @@
 
 \section{Problem 3}
 \begin{frame}{Problem 3}
+  Two touching X particles now collapse into 1.
+
   Continuing from the previous problem, let the probability of firing an X particle be some  $p \in (0, 1)$.
   Suppose at each shot, the probability of firing an X particle is  some $p \in (0, 1)$.
   \begin{itemize}
@@ -191,7 +193,7 @@
 \end{frame}
 
 \begin{frame}
-  The number of X particles stays the same if an X particle hits an X particle.
+  The total number of particles stays the same if an X particle hits an X particle.
 
   This happens with probability $p^2$.
 
